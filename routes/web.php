@@ -15,12 +15,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $articles = \App\Models\Article::all();
+    return view('pages.mainPage', ['articles'=>$articles]);
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $user = auth()->user();
+    return view('dashboard', ['user'=>$user]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/addArticle', function(){
+    return view('pages.addArticle');
+});
+Route::post('/addArticle', function (\Illuminate\Http\Request $request){
+   $article = new \App\Models\Article();
+   $article->title = $request->title;
+   $article->content = $request->contentField;
+   $article->user_id = auth()->user()->getAuthIdentifier();
+   $article->save();
+   return redirect()->intended('/');
+});
+Route::get('/blog/{articleId}', function (\Illuminate\Http\Request $request){
+    $article = \App\Models\Article::where('id', $request->articleId)->first();
+    return view('pages.article', ['article'=>$article]);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
