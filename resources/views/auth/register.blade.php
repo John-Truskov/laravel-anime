@@ -3,6 +3,15 @@
 @section('content')
         <div class="col-sm-6 my-3 mx-auto">
             <h2 class="text-center">Регистрация</h2>
+            @if(count($errors) > 0)
+                <div class="alert alert-danger">
+                  <ul>
+                      @foreach($errors->all() as $error)
+                          <li>{{$error}}</li>
+                      @endforeach
+                  </ul>
+                </div>
+            @endif
             <form action="/register" method="post">
                 @csrf
                 <div class="mb-3">
