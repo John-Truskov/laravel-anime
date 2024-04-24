@@ -21,6 +21,8 @@ Route::get('/profile', [ProfileController::class, 'showProfile'])->middleware(['
 Route::view('addArticle', 'pages.addArticle')->middleware('auth');
 Route::post('/addArticle', [ArticleController::class, 'addArticle'])->middleware('auth');
 Route::get('/blog/{articleId}', [ArticleController::class, 'showArticle']);
+Route::get('/editArticle/{articleId}', [ArticleController::class, 'showArticleUpdate'])->middleware('auth');
+Route::post('/editArticle', [ArticleController::class, 'editArticle'])->middleware('auth');
 
 /*Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
