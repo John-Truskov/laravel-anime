@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,15 +27,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/addArticle', function(){
     return view('pages.addArticle');
-});
-Route::post('/addArticle', function (\Illuminate\Http\Request $request){
-   $article = new \App\Models\Article();
-   $article->title = $request->title;
-   $article->content = $request->contentField;
-   $article->user_id = auth()->user()->getAuthIdentifier();
-   $article->save();
-   return redirect()->intended('/');
-});
+})->middleware('auth');
+Route::post('/addArticle', [ArticleController::class, 'addArticle'])->middleware('auth');
 Route::get('/blog/{articleId}', function (\Illuminate\Http\Request $request){
     $article = \App\Models\Article::where('id', $request->articleId)->first();
     return view('pages.article', ['article'=>$article]);
