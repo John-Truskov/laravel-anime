@@ -9,7 +9,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Навбар</a>
+        <a class="navbar-brand" href="/">True-anime</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,7 +21,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/addArticle">Добавить статью</a>
                 </li>
-                <li class="nav-item dropdown">
+                {{--<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Выпадающий список
                     </a>
@@ -34,12 +34,29 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled">Отключенная</a>
-                </li>
+                </li>--}}
             </ul>
-            <form class="d-flex" role="search">
+            <ul class="d-flex navbar-nav">
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Профиль</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Выйти</a>
+                    </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Регистрация</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Вход</a>
+                </li>
+                @endauth
+            </ul>
+            {{--<form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
                 <button class="btn btn-outline-success" type="submit">Поиск</button>
-            </form>
+            </form>--}}
         </div>
     </div>
 </nav>
