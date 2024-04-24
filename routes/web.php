@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::post('/addArticle', [ArticleController::class, 'addArticle'])->middleware
 Route::get('/blog/{articleId}', [ArticleController::class, 'showArticle']);
 Route::get('/editArticle/{articleId}', [ArticleController::class, 'showArticleUpdate'])->middleware('auth');
 Route::post('/editArticle', [ArticleController::class, 'editArticle'])->middleware('auth');
+Route::post('/addComment', [CommentController::class, 'addComment'])->middleware('auth');
 
 /*Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

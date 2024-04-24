@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -21,7 +22,8 @@ class ArticleController extends Controller
     }
     public function showArticle(Request $request){
         $article = Article::where('id', $request->articleId)->first();
-        return view('pages.article', ['article'=>$article]);
+        $comments = Comment::where('article_id', $request->articleId)->get();
+        return view('pages.article', ['article'=>$article, 'comments'=>$comments]);
     }
     public function showArticleUpdate(Request $request){
         $article = Article::where('id', $request->articleId)->first();
