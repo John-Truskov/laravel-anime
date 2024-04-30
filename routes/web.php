@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ArticleController::class, 'showAllArticles']);
-Route::get('/profile', [ProfileController::class, 'showProfile'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::view('addArticle', 'pages.addArticle')->middleware('auth');
 Route::post('/addArticle', [ArticleController::class, 'addArticle'])->middleware('auth');
@@ -26,10 +25,10 @@ Route::get('/editArticle/{articleId}', [ArticleController::class, 'showArticleUp
 Route::post('/editArticle', [ArticleController::class, 'editArticle'])->middleware('auth');
 Route::post('/addComment', [CommentController::class, 'addComment'])->middleware('auth');
 
-/*Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});*/
+});
 
 require __DIR__.'/auth.php';

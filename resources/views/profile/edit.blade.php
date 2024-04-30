@@ -1,3 +1,12 @@
+@extends('template')
+@section('title', 'Профиль')
+@section('content')
+    <p><strong>ID: </strong><span>{{$user->id}}</span></p>
+    <p><strong>Email: </strong><span>{{$user->email}}</span></p>
+    <p><strong>Имя: </strong><span>{{$user->name}}</span></p>
+@endsection
+
+{{--
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -27,3 +36,4 @@
         </div>
     </div>
 </x-app-layout>
+--}}

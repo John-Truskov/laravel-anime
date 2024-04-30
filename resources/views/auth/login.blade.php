@@ -14,6 +14,7 @@
         @endif
         <form action="/login" method="post">
             @csrf
+            <p>Нет аккаунта? <a href="/register">Зарегистрироваться</a></p>
             <div class="mb-3">
                 <input name="email" type="email" class="form-control" placeholder="E-mail" required>
             </div>
