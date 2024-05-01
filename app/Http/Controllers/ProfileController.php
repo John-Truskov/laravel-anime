@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -34,6 +35,9 @@ class ProfileController extends Controller
         }
         $file = $request->file('avatar');
         if(!empty($file)){
+            if(!empty($user->img)){
+                Storage::delete(str_replace('/storage', 'public', $user->img));
+            }
             $path = $file->store('public/profile_image');
             $user->img = str_replace('public','/storage', $path);
         }

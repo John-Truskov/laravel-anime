@@ -29,16 +29,18 @@
             <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div>
         </div>
         <div class="mb-3">
-            <label for="addImage">Аватар</label>
+            <label for="addImage">Изменить аватар</label>
             <input name="avatar" type="file" class="form-control" id="addImage">
         </div>
-        <div class="mb-3">
-            <label for="InputPassword" class="form-label">Новый пароль</label>
-            <input name="password" type="password" class="form-control" id="InputPassword" value="">
-        </div>
-        <div class="mb-3">
-            <label for="ConfirmPassword" class="form-label">Повторите новый пароль</label>
-            <input name="confirm_password" type="password" class="form-control" id="ConfirmPassword" value="">
+        <div class="row mb-3 border border-dark">
+            <div class="mb-3 col-6">
+                <label for="InputPassword" class="form-label">Новый пароль</label>
+                <input name="password" type="password" class="form-control" id="InputPassword" value="">
+            </div>
+            <div class="mb-3 col-6">
+                <label for="ConfirmPassword" class="form-label">Повторите новый пароль</label>
+                <input name="confirm_password" type="password" class="form-control" id="ConfirmPassword" value="">
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Изменить</button>
     </form>
