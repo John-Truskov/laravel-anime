@@ -11,10 +11,6 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    public function showProfile(){
-        $user = auth()->user();
-        return view('dashboard', ['user'=>$user]);
-    }
     /**
      * Display the user's profile form.
      */
@@ -30,14 +26,18 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = auth()->user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if(!empty($request->password) and $request->password == $request->confirm_password){
+            $user->password = password_hash($request->password, PASSWORD_DEFAULT);
         }
-
-        $request->user()->save();
-
+        $file = $request->file('avatar');
+        if(!empty($file)){
+            $path = $file->store('public/profile_image');
+            $user->img = str_replace('public','/storage', $path);
+        }
+        $user->save();
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 

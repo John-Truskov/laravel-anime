@@ -1,39 +1,45 @@
 @extends('template')
 @section('title', 'Профиль')
 @section('content')
-    <p><strong>ID: </strong><span>{{$user->id}}</span></p>
-    <p><strong>Email: </strong><span>{{$user->email}}</span></p>
-    <p><strong>Имя: </strong><span>{{$user->name}}</span></p>
-@endsection
-
-{{--
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-4">
+            <img class="img-fluid" src="{{$user->img ?? '/assets/no-avatar.webp'}}">
+        </div>
+        <div class="col-6">
+            <h2 class="mb-3">Данные профиля:</h2>
+            <p><strong>ID: </strong><span>{{$user->id}}</span></p>
+            <p><strong>Имя: </strong><span>{{$user->name}}</span></p>
+            <p><strong>Email: </strong><span>{{$user->email}}</span></p>
         </div>
     </div>
-</x-app-layout>
---}}
+    <hr>
+    <form action="/profile" method="post" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
+        <div class="mb-3">
+            <h2>Изменить данные профиля:</h2>
+        </div>
+        <div class="mb-3">
+            <label for="InputName" class="form-label">Имя</label>
+            <input name="name" type="text" class="form-control" id="InputName" value="{{$user->name}}">
+        </div>
+        <div class="mb-3">
+            <label for="InputEmail" class="form-label">e-mail</label>
+            <input name="email" type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" value="{{$user->email}}">
+            <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div>
+        </div>
+        <div class="mb-3">
+            <label for="addImage">Аватар</label>
+            <input name="avatar" type="file" class="form-control" id="addImage">
+        </div>
+        <div class="mb-3">
+            <label for="InputPassword" class="form-label">Новый пароль</label>
+            <input name="password" type="password" class="form-control" id="InputPassword" value="">
+        </div>
+        <div class="mb-3">
+            <label for="ConfirmPassword" class="form-label">Повторите новый пароль</label>
+            <input name="confirm_password" type="password" class="form-control" id="ConfirmPassword" value="">
+        </div>
+        <button type="submit" class="btn btn-primary">Изменить</button>
+    </form>
+@endsection
