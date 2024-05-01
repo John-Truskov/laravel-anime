@@ -3,7 +3,7 @@
 @section('content')
         <a href="/blog/{{$article->id}}" class="h2">{{$article->title}}</a>
         <div>{{$article->content}}</div>
-        <p>{{$article->created_at}}</p>
+        <p><b>Автор:</b> {{$article->user->name}}  <b>Дата публикации:</b> {{$article->date}}</p>
     @auth
         <p><a href="/editArticle/{{$article->id}}">[редактировать]</a></p>
     <hr>
@@ -22,7 +22,7 @@
     <div>
         @foreach($comments as $comment)
             <p class="mt-3">
-                <span>Пользователь: {{$comment->user_id}}</span>
+                <span><b>Пользователь:</b> {{$comment->user->name}}</span>
                 <br>
                 {{$comment->comment}}
             </p>

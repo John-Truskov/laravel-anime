@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ArticleController::class, 'showAllArticles']);
 Route::get('/blog/{articleId}', [ArticleController::class, 'showArticle']);
 
-Route::middleware('admin')->group(function (){
+Route::middleware(['auth', 'admin'])->group(function (){
     Route::view('addArticle', 'pages.addArticle');
     Route::post('/addArticle', [ArticleController::class, 'addArticle']);
     Route::get('/editArticle/{articleId}', [ArticleController::class, 'showArticleUpdate']);
