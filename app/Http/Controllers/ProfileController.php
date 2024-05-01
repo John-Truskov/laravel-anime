@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\UserRole;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use App\Models\BindUserRole;
 
 class ProfileController extends Controller
 {
@@ -17,8 +19,12 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $user = auth()->user();
+        $bindUserRole = BindUserRole::where('user_id', $user->id)->first();
+        $userRole = UserRole::where('id', $bindUserRole->role_id)->first();
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
+            'role' => $userRole->role,
         ]);
     }
 

@@ -17,18 +17,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ArticleController::class, 'showAllArticles']);
-
-Route::view('addArticle', 'pages.addArticle')->middleware('auth');
-Route::post('/addArticle', [ArticleController::class, 'addArticle'])->middleware('auth');
 Route::get('/blog/{articleId}', [ArticleController::class, 'showArticle']);
-Route::get('/editArticle/{articleId}', [ArticleController::class, 'showArticleUpdate'])->middleware('auth');
-Route::post('/editArticle', [ArticleController::class, 'editArticle'])->middleware('auth');
-Route::post('/addComment', [CommentController::class, 'addComment'])->middleware('auth');
+
+Route::middleware('admin')->group(function (){
+    Route::view('addArticle', 'pages.addArticle');
+    Route::post('/addArticle', [ArticleController::class, 'addArticle']);
+    Route::get('/editArticle/{articleId}', [ArticleController::class, 'showArticleUpdate']);
+    Route::post('/editArticle', [ArticleController::class, 'editArticle']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/addComment', [CommentController::class, 'addComment']);
 });
 
 require __DIR__.'/auth.php';
