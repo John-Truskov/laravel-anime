@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ArticleController::class, 'showAllArticles']);
 Route::get('/blog/{articleId}', [ArticleController::class, 'showArticle']);
+Route::post('/search', [ArticleController::class, 'showSearchArticles']);
 
 Route::middleware(['auth', 'admin'])->group(function (){
     Route::view('addArticle', 'pages.addArticle');

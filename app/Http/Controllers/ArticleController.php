@@ -16,6 +16,14 @@ class ArticleController extends Controller
         }
         return view('pages.mainPage', ['articles'=>$articles]);
     }
+    public function showSearchArticles(Request $request){
+        $search = $request->search;
+        $articles = Article::whereAny(['title', 'content'], 'LIKE', '%'.$search.'%')->get();
+        foreach ($articles as $article){
+            $article->date = $this->trickDate($article->created_at, false);
+        }
+        return view('pages.searchPage', ['articles' => $articles, 'search' => $search]);
+    }
     public function addArticle(Request $request){
         $article = new Article();
         $article->title = $request->title;

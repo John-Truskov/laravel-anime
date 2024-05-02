@@ -14,14 +14,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Главная</a>
                 </li>
                 @auth
-                <li class="nav-item">
-                    <a class="nav-link" href="/addArticle">Добавить статью</a>
-                </li>
+                    @if(\App\Models\BindUserRole::where('user_id', auth()->user()->id)->first()->role_id == 2)
+                        <li class="nav-item">
+                            <a class="nav-link" href="/addArticle">Добавить статью</a>
+                        </li>
+                    @endif
                 @endauth
                 {{--<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,6 +40,11 @@
                     <a class="nav-link disabled">Отключенная</a>
                 </li>--}}
             </ul>
+            <form action="/search" method="post" class="d-flex me-auto" role="search">
+                @csrf
+                <input name="search" class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                <button class="btn btn-outline-success" type="submit">Поиск</button>
+            </form>
             <ul class="d-flex navbar-nav">
                 @auth
                     <li class="nav-item">
@@ -55,10 +62,6 @@
                 </li>
                 @endauth
             </ul>
-            {{--<form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn btn-outline-success" type="submit">Поиск</button>
-            </form>--}}
         </div>
     </div>
 </nav>
