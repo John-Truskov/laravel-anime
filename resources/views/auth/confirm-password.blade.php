@@ -1,27 +1,25 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+@extends('template')
+@section('title', 'Подтверждение пароля')
+@section('content')
+    <div class="col-sm-6 my-3 mx-auto">
+        <h2 class="text-center">Подтверждение пароля</h2>
+        @if($errors->has('password'))
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->get('password') as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ route('password.confirm') }}" method="post">
+            @csrf
+            <div class="mb-3">
+                <input name="password" type="password" class="form-control" placeholder="Пароль" required autofocus>
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="form-control btn btn-primary" value="Подтвердить">
+            </div>
+        </form>
     </div>
-
-    <form method="POST" action="{{ route('password.confirm') }}">
-        @csrf
-
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+@endsection

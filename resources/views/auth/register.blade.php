@@ -3,7 +3,7 @@
 @section('content')
         <div class="col-sm-6 my-3 mx-auto">
             <h2 class="text-center">Регистрация</h2>
-            @if(count($errors) > 0)
+            @if($errors->any())
                 <div class="alert alert-danger">
                   <ul>
                       @foreach($errors->all() as $error)
@@ -16,7 +16,7 @@
                 @csrf
                 <p>Есть аккаунт? <a href="/login">Войти</a></p>
                 <div class="mb-3">
-                    <input name="name" type="text" class="form-control" placeholder="Имя" required>
+                    <input name="name" type="text" class="form-control" placeholder="Имя" required autofocus>
                 </div>
                 <div class="mb-3">
                     <input name="email" type="email" class="form-control" placeholder="E-mail" required>
