@@ -23,6 +23,15 @@
                 <input name="frames[]" type="file" class="form-control" id="addFrames" multiple>
             </div>
             <div class="mb-3">
+                <b>Выберите жанры:</b>
+                @foreach($genres as $genre)
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="{{ $genre->id }}" name="genres[]" value="{{ $genre->id }}"{{ $genre->checked ?? '' }}>
+                        <label for="{{ $genre->id }}" class="form-check-label">{{ $genre->genre }}</label>
+                    </div>
+                @endforeach
+            </div>
+            <div class="mb-3">
                 <input type="submit" class="form-control btn btn-primary" value="Сохранить изменения">
             </div>
             <input type="hidden" name="articleId" value="{{$article->id}}">

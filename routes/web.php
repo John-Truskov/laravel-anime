@@ -23,7 +23,8 @@ Route::get('/random', [ArticleController::class, 'randomAnime']);
 Route::get('rss.xml', [ArticleController::class, 'showRSS']);
 
 Route::middleware(['auth', 'admin'])->group(function (){
-    Route::view('addArticle', 'pages.addArticle');
+    //Route::view('addArticle', 'pages.addArticle');
+    Route::get('/addArticle', [ArticleController::class, 'showAddArticle']);
     Route::post('/addArticle', [ArticleController::class, 'addArticle']);
     Route::get('/editArticle/{articleId}', [ArticleController::class, 'showArticleUpdate']);
     Route::post('/editArticle', [ArticleController::class, 'editArticle']);

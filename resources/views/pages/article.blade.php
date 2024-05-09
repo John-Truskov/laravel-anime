@@ -7,7 +7,16 @@
         </div>
         <div class="col-9">
             <h2>{{$article->title}}</h2>
-            <p><b>Автор:</b> {{$article->user->name}}  <b>Дата публикации:</b> {{$article->date}}</p>
+            <p><b>Автор:</b> {{$article->user}}  <b>Дата публикации:</b> {{$article->date}}</p>
+            <p><b>Жанр: </b>
+            @foreach($genres as $genre)
+                @if(!next($genres))
+                    {{ $genre }}
+                @else
+                    {{ $genre.', ' }}
+                @endif
+            @endforeach
+            </p>
         </div>
     </div>
     <h3>Описание</h3>
@@ -40,7 +49,7 @@
     <div>
         @foreach($comments as $comment)
             <p class="mt-3">
-                <span><b>Пользователь:</b> {{$comment->user->name}}</span>
+                <span><b>Пользователь:</b> {{$comment->user}}</span>
                 <br>
                 {{$comment->comment}}
             </p>
