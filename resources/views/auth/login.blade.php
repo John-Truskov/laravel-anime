@@ -15,10 +15,10 @@
         <form action="{{ route('login') }}" method="post">
             @csrf
             <div class="row justify-content-around mb-3">
-                <div class="col-5">
+                <div class="col-6">
                     Нет аккаунта? <a href="/register">Зарегистрироваться</a>
                 </div>
-                <div class="col-5">
+                <div class="col-6">
                     Забыли пароль? <a href="{{ route('password.request') }}">Восстановить</a>
                 </div>
             </div>

@@ -1,11 +1,27 @@
 @extends('template')
 @section('title', $article->title)
 @section('content')
-        <a href="/blog/{{$article->id}}" class="h2">{{$article->title}}</a>
-        <div>{{$article->content}}</div>
-        <p><b>Автор:</b> {{$article->user->name}}  <b>Дата публикации:</b> {{$article->date}}</p>
+    <div class="row my-3">
+        <div class="col-3">
+            <img class="rounded mx-auto" style="max-width: 100%;" src="{{$article->img}}">
+        </div>
+        <div class="col-9">
+            <h2>{{$article->title}}</h2>
+            <p><b>Автор:</b> {{$article->user->name}}  <b>Дата публикации:</b> {{$article->date}}</p>
+        </div>
+    </div>
+    <h3>Описание</h3>
+    <div class="mb-3">{{$article->content}}</div>
+    @if(count($frames) > 0)
+        <h3>Кадры</h3>
+        @foreach($frames as $frame)
+            <a href="{{$frame->img}}"><img class="img-thumbnail mx-3" style="max-width: 200px; max-height: 200px;" src="{{$frame->img}}"></a>
+        @endforeach
+    @endif
     @auth
-        <p><a href="/editArticle/{{$article->id}}">[редактировать]</a></p>
+        @if($role == 2)
+            <p><a href="/editArticle/{{$article->id}}">[редактировать]</a></p>
+        @endif
     <hr>
     <form action="/addComment" method="post">
         @csrf
@@ -19,6 +35,8 @@
     </form>
     @endauth
     <hr>
+    @if(!empty($comments))
+    <h3>Комментарии</h3>
     <div>
         @foreach($comments as $comment)
             <p class="mt-3">
@@ -28,4 +46,5 @@
             </p>
         @endforeach
     </div>
+    @endif
 @endsection
