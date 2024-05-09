@@ -20,6 +20,7 @@ Route::get('/', [ArticleController::class, 'showAllArticles']);
 Route::get('/anime/{articleId}', [ArticleController::class, 'showArticle']);
 Route::post('/search', [ArticleController::class, 'showSearchArticles']);
 Route::get('/random', [ArticleController::class, 'randomAnime']);
+Route::get('rss.xml', [ArticleController::class, 'showRSS']);
 
 Route::middleware(['auth', 'admin'])->group(function (){
     Route::view('addArticle', 'pages.addArticle');

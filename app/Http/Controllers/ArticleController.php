@@ -16,7 +16,8 @@ class ArticleController extends Controller
         $articles = Article::all();
         foreach ($articles as $article){
             $article->date = $this->trickDate($article->created_at, false);
-            $article->content = $this->stripPost($article->content);
+            if(mb_strlen($article->content) > 400)
+                $article->content = $this->stripPost($article->content);
         }
         return view('pages.mainPage', ['articles'=>$articles]);
     }
@@ -25,7 +26,8 @@ class ArticleController extends Controller
         $articles = Article::whereAny(['title', 'content'], 'LIKE', '%'.$search.'%')->get();
         foreach ($articles as $article){
             $article->date = $this->trickDate($article->created_at, false);
-            $article->content = $this->stripPost($article->content);
+            if(mb_strlen($article->content) > 400)
+                $article->content = $this->stripPost($article->content);
         }
         return view('pages.searchPage', ['articles' => $articles, 'search' => $search]);
     }
@@ -94,6 +96,20 @@ class ArticleController extends Controller
     public function randomAnime(){
         $max = Article::count();
         return redirect()->intended('/anime/'.mt_rand(1, $max));
+    }
+
+    public function showRSS(){
+        $articles = Article::all()->sortByDesc('id');
+        $now = date(DATE_RFC822);
+        foreach ($articles as $article){
+            if(mb_strlen($article->title) > 100)
+                $article->title = mb_substr($article->title, 0, 100, 'UTF-8').'...';
+            if(mb_strlen($article->content) > 400)
+                $article->content = $this->stripPost($article->content);
+            $article->user = User::where('id', $article->user_id)->first();
+            $article->created_at = $article->created_at->tz('GMT')->toAtomString();
+        }
+        return response()->view('rss', ['articles'=>$articles, 'now'=>$now])->header('Content-Type', 'text/xml');
     }
     private function trickDate($date, $type = true){
         $month = array(
