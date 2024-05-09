@@ -91,6 +91,10 @@ class ArticleController extends Controller
         }
         return redirect()->intended('/anime/'.$article->id);
     }
+    public function randomAnime(){
+        $max = Article::count();
+        return redirect()->intended('/anime/'.mt_rand(1, $max));
+    }
     private function trickDate($date, $type = true){
         $month = array(
             "января",

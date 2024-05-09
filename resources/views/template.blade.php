@@ -18,6 +18,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Главная</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/random">Случайное аниме</a>
+                </li>
                 @auth
                     @if(\App\Models\BindUserRole::where('user_id', auth()->user()->id)->first()->role_id == 2)
                         <li class="nav-item">
