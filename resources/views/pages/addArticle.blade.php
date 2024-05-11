@@ -22,7 +22,7 @@
             <div class="mb-3">
                 <b>Выберите жанры:</b>
                 @foreach($genres as $genre)
-                <div class="form-check">
+                    <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="{{ $genre->id }}" name="genres[]" value="{{ $genre->id }}">
                     <label for="{{ $genre->id }}" class="form-check-label">{{ $genre->genre }}</label>
                 </div>
