@@ -144,6 +144,11 @@ class ArticleController extends Controller
         }
         return redirect()->intended('/anime/'.$article->id);
     }
+    public function deleteArticle(Request $request){
+        Article::where('id', $request->articleId)->delete();
+        Comment::where('article_id', $request->articleId)->delete();
+        return redirect()->intended('/admin/anime');
+    }
     public function randomAnime(){
         $max = Article::count();
         return redirect()->intended('/anime/'.mt_rand(1, $max));

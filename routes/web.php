@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
@@ -23,11 +24,15 @@ Route::get('/random', [ArticleController::class, 'randomAnime']);
 Route::get('rss.xml', [ArticleController::class, 'showRSS']);
 
 Route::middleware(['auth', 'admin'])->group(function (){
-    //Route::view('addArticle', 'pages.addArticle');
     Route::get('/addArticle', [ArticleController::class, 'showAddArticle']);
     Route::post('/addArticle', [ArticleController::class, 'addArticle']);
     Route::get('/editArticle/{articleId}', [ArticleController::class, 'showArticleUpdate']);
+    Route::get('/deleteArticle/{articleId}', [ArticleController::class, 'deleteArticle']);
     Route::post('/editArticle', [ArticleController::class, 'editArticle']);
+    Route::get('/admin', [AdminController::class, 'showAdmin']);
+    Route::get('/admin/anime', [AdminController::class, 'showAnime']);
+    Route::get('/admin/users', [AdminController::class, 'showUsers']);
+    Route::get('/admin/comments', [AdminController::class, 'showComments']);
 });
 
 Route::middleware('auth')->group(function () {
