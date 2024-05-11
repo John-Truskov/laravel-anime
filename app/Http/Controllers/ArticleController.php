@@ -46,6 +46,11 @@ class ArticleController extends Controller
         $file = $request->file('mainImage');
         $path = $file->store('public/anime_image');
         $article->img = str_replace('public','/storage', $path);
+        $trailer = $request->file('trailer');
+        if(!empty($trailer)){
+            $path = $trailer->store('public/anime_video');
+            $article->trailer = str_replace('public','/storage', $path);
+        }
         $article->save();
         $frames = $request->file('frames');
         if(!empty($frames)){
@@ -57,11 +62,13 @@ class ArticleController extends Controller
                 $animeImage->save();
             }
         }
-        foreach($request->genres as $genre){
-            $bindArticleGenres = new BindArticleGenre();
-            $bindArticleGenres->article_id = $article->id;
-            $bindArticleGenres->genre_id = $genre;
-            $bindArticleGenres->save();
+        if(!empty($request->genres)){
+            foreach($request->genres as $genre){
+                $bindArticleGenres = new BindArticleGenre();
+                $bindArticleGenres->article_id = $article->id;
+                $bindArticleGenres->genre_id = $genre;
+                $bindArticleGenres->save();
+            }
         }
         return redirect()->intended('/anime/'.$article->id);
     }
@@ -82,8 +89,7 @@ class ArticleController extends Controller
             $comment->user = $user->name;
         }
         $frames = AnimeImage::where('anime_id', $request->articleId)->get();
-        $userRole = !empty(auth()->user()->id) ? (BindUserRole::where('user_id', auth()->user()->id)->first()->role_id) : 0;
-        return view('pages.article', ['article'=>$article, 'comments'=>$comments, 'frames'=>$frames, 'genres'=>  $genres, 'role'=>$userRole]);
+        return view('pages.article', ['article'=>$article, 'comments'=>$comments, 'frames'=>$frames, 'genres'=>  $genres]);
     }
     public function showArticleUpdate(Request $request){
         $article = Article::where('id', $request->articleId)->first();
@@ -108,6 +114,14 @@ class ArticleController extends Controller
             }
             $path = $file->store('public/anime_image');
             $article->img = str_replace('public','/storage', $path);
+        }
+        $trailer = $request->file('trailer');
+        if(!empty($trailer)){
+            if(!empty($article->trailer)){
+                Storage::delete(str_replace('/storage', 'public', $article->trailer));
+            }
+            $path = $trailer->store('public/anime_video');
+            $article->trailer = str_replace('public','/storage', $path);
         }
         $article->save();
         $frames = $request->file('frames');

@@ -8,12 +8,15 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml">
     <link rel="manifest" href="/manifest.json">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-@hasSection('style')
-    <link rel="stylesheet" href="/css/@yield('style').css">
-@endif
-@hasSection('header_script')
-    <script src="/js/@yield('header_script').js"></script>
-@endif
+    @hasSection('style')
+        <link rel="stylesheet" href="/css/@yield('style').css">
+    @endif
+    @hasSection('video_style')
+        <link rel="stylesheet" href="/css/@yield('video_style').css">
+    @endif
+    @hasSection('header_script')
+        <script src="/js/@yield('header_script').js"></script>
+   @endif
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -47,6 +50,7 @@
             </ul>
             <form action="/search" method="post" class="d-flex me-auto" role="search">
                 @csrf
+
                 <input name="search" class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
                 <button class="btn btn-outline-success" type="submit">Поиск</button>
             </form>
@@ -59,12 +63,12 @@
                         <a class="nav-link" href="/logout">Выйти</a>
                     </li>
                 @else
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Регистрация</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Вход</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Вход</a>
+                    </li>
                 @endauth
             </ul>
         </div>
@@ -80,6 +84,9 @@
 </footer>
 @hasSection('footer_script')
     <script src="/js/@yield('footer_script').js"></script>
+@endif
+@hasSection('video_script')
+    <script src="/js/@yield('video_script').js"></script>
 @endif
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

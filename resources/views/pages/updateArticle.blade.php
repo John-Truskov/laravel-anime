@@ -23,13 +23,23 @@
                 <input name="frames[]" type="file" class="form-control" id="addFrames" multiple>
             </div>
             <div class="mb-3">
+                @if(!empty($article->trailer))
+                    <label for="addVideo" class="fw-semibold">Изменить трейлер</label>
+                @else
+                    <label for="addVideo" class="fw-semibold">Добавить трейлер</label>
+                @endif
+                <input name="trailer" type="file" class="form-control" id="addVideo">
+            </div>
+            <div class="mb-3">
                 <b>Выберите жанры:</b>
+                <div class="border" style="max-height: 200px; max-width: 50%; overflow-y: scroll; padding-left: 1em; padding-top: .5em; margin-top: .5em;">
                 @foreach($genres as $genre)
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="{{ $genre->id }}" name="genres[]" value="{{ $genre->id }}"{{ $genre->checked ?? '' }}>
                         <label for="{{ $genre->id }}" class="form-check-label">{{ $genre->genre }}</label>
                     </div>
                 @endforeach
+                </div>
             </div>
             <div class="mb-3">
                 <input type="submit" class="form-control btn btn-primary" value="Сохранить изменения">
