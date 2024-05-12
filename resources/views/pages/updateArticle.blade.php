@@ -42,6 +42,22 @@
                 </div>
             </div>
             <div class="mb-3">
+                <span class="fw-semibold">Укажите тип аниме</span>
+                <select name="type" class="form-select" aria-label="Укажите тип">
+                    @foreach($types as $type)
+                        <option value="{{ $type->id }}" @selected($type->id == $article->type_id)>{{ $type->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <span class="fw-semibold">Укажите статус аниме</span>
+                <select name="status" class="form-select" aria-label="Укажите статус">
+                    @foreach($statuses as $status)
+                        <option value="{{ $status->id }}" @selected($status->id == $article->$status)>{{ $status->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
                 <input type="submit" class="form-control btn btn-primary" value="Сохранить изменения">
             </div>
             <input type="hidden" name="articleId" value="{{$article->id}}">

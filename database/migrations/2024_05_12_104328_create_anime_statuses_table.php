@@ -11,16 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('anime_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('content');
-            $table->string('img');
-            $table->string('trailer')->nullable();
-            $table->bigInteger('user_id');
-            $table->bigInteger('type_id');
-            $table->bigInteger('status');
-            $table->timestamps();
         });
     }
 
@@ -29,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('anime_statuses');
     }
 };

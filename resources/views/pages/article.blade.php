@@ -14,6 +14,8 @@
         <div class="col-9">
             <h2>{{$article->title}}</h2>
             <p><b>Автор:</b> {{$article->user}}  <b>Дата публикации:</b> {{$article->date}}</p>
+            <p><b>Тип:</b> {{$article->type}}</p>
+            <p><b>Статус:</b> {{$article->status_title}}</p>
             <p><b>Жанр: </b>
             @foreach($genres as $genre)
                 @if(!next($genres))

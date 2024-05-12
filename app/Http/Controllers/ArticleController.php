@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\AnimeGenres;
 use App\Models\AnimeImage;
+use App\Models\AnimeStatus;
+use App\Models\AnimeType;
 use App\Models\Article;
 use App\Models\BindArticleGenre;
-use App\Models\BindUserRole;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -36,13 +37,17 @@ class ArticleController extends Controller
 
     public function showAddArticle(){
         $genres = AnimeGenres::all();
-        return view('pages.addArticle', ['genres'=>$genres]);
+        $types = AnimeType::all();
+        $statuses = AnimeStatus::all();
+        return view('pages.addArticle', ['genres'=>$genres, 'types'=>$types, 'statuses'=>$statuses]);
     }
     public function addArticle(Request $request){
         $article = new Article();
         $article->title = $request->title;
         $article->content = $request->contentField;
         $article->user_id = auth()->user()->getAuthIdentifier();
+        $article->type_id = $request->type;
+        $article->status = $request->status;
         $file = $request->file('mainImage');
         $path = $file->store('public/anime_image');
         $article->img = str_replace('public','/storage', $path);
@@ -77,6 +82,10 @@ class ArticleController extends Controller
         $user = User::where('id', $article->user_id)->first();
         $article->user = $user->name;
         $article->date = $this->trickDate($article->created_at);
+        $type = AnimeType::where('id', $article->type_id)->first();
+        $article->type = $type->title;
+        $status = AnimeStatus::where('id', $article->status)->first();
+        $article->status_title = $status->title;
         $bindArticleGenres = BindArticleGenre::where('article_id', $request->articleId)->get();
         $genres = [];
         foreach($bindArticleGenres as $bindArticleGenre){
@@ -101,12 +110,16 @@ class ArticleController extends Controller
                     $genre->checked = ' checked';
             }
         }
-        return view('pages.updateArticle', ['article'=>$article, 'genres'=>$genres]);
+        $types = AnimeType::all();
+        $statuses = AnimeStatus::all();
+        return view('pages.updateArticle', ['article'=>$article, 'genres'=>$genres, 'types'=>$types, 'statuses'=>$statuses]);
     }
     public function editArticle(Request $request){
         $article = Article::where('id', $request->articleId)->first();
         $article->title = $request->title;
         $article->content = $request->contentField;
+        $article->type_id = $request->type;
+        $article->status = $request->status;
         $file = $request->file('mainImage');
         if(!empty($file)){
             if(!empty($article->img)){
