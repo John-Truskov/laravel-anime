@@ -33,6 +33,14 @@ Route::middleware(['auth', 'admin'])->group(function (){
     Route::get('/admin/anime', [AdminController::class, 'showAnime']);
     Route::get('/admin/users', [AdminController::class, 'showUsers']);
     Route::get('/admin/comments', [AdminController::class, 'showComments']);
+    Route::get('/addUser', [AdminController::class, 'showAddUser']);
+    Route::post('/addUser', [AdminController::class, 'addUser']);
+    Route::get('/editUser/{userId}', [AdminController::class, 'showUserUpdate']);
+    Route::post('/editUser', [AdminController::class, 'editUser']);
+    Route::get('/deleteUser/{userId}', [AdminController::class, 'deleteUser']);
+    Route::get('/editComment/{commentId}', [AdminController::class, 'showCommentUpdate']);
+    Route::post('/editComment', [AdminController::class, 'editComment']);
+    Route::get('/deleteComment/{commentId}', [AdminController::class, 'deleteComment']);
 });
 
 Route::middleware('auth')->group(function () {
