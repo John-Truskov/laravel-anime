@@ -14,7 +14,7 @@
         <div class="mb-3">
             <form action="{{ route('verification.send') }}" method="post">
                 @csrf
-                <input type="submit" class="form-control btn btn-primary" value="Выслать повторно письмо для подтверждения>
+                <input type="submit" class="form-control btn btn-primary" value="Выслать повторно письмо для подтверждения">
             </form>
         </div>
     </div>

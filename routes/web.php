@@ -23,7 +23,7 @@ Route::post('/search', [ArticleController::class, 'showSearchArticles']);
 Route::get('/random', [ArticleController::class, 'randomAnime']);
 Route::get('rss.xml', [ArticleController::class, 'showRSS']);
 
-Route::middleware(['auth', 'admin'])->group(function (){
+Route::middleware(['auth', 'verified', 'admin'])->group(function (){
     Route::get('/addArticle', [ArticleController::class, 'showAddArticle']);
     Route::post('/addArticle', [ArticleController::class, 'addArticle']);
     Route::get('/editArticle/{articleId}', [ArticleController::class, 'showArticleUpdate']);
@@ -43,7 +43,7 @@ Route::middleware(['auth', 'admin'])->group(function (){
     Route::get('/deleteComment/{commentId}', [AdminController::class, 'deleteComment']);
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

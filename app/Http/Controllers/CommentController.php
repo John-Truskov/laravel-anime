@@ -13,6 +13,6 @@ class CommentController extends Controller
         $comment->article_id = $request->articleId;
         $comment->user_id = auth()->user()->getAuthIdentifier();
         $comment->save();
-        return redirect()->intended('/blog/'.$request->articleId);
+        return redirect()->intended('/anime/'.$request->articleId);
     }
 }
