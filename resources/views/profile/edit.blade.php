@@ -10,7 +10,10 @@
             <p><strong>ID: </strong><span>{{$user->id}}</span></p>
             <p><strong>Имя: </strong><span>{{$user->name}}</span></p>
             <p><strong>Email: </strong><span>{{$user->email}}</span></p>
-            <p><strong>Статус: </strong><span>{{$role}}</span></p>
+            <p><strong>Статус: </strong><span>{{$role->role}} </span></p>
+            @if($role->id == 2)
+                <button class="btn btn-primary" onclick="window.location.href = `/admin`;">Админ панель</button>
+            @endif
         </div>
     </div>
     <hr>

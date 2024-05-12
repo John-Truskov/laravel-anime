@@ -23,10 +23,7 @@ class ProfileController extends Controller
         $user = auth()->user();
         $bindUserRole = BindUserRole::where('user_id', $user->id)->first();
         $userRole = UserRole::where('id', $bindUserRole->role_id)->first();
-        return view('profile.edit', [
-            'user' => $user,
-            'role' => $userRole->role,
-        ]);
+        return view('profile.edit', ['user' => $user, 'role' => $userRole]);
     }
 
     /**
