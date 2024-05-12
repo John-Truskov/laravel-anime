@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -70,5 +71,14 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+    public function showUserInfo(Request $request){
+        $user = User::where('id', $request->userId)->first();
+        $bindUserRole = BindUserRole::where('user_id', $user->id)->first();
+        $userRole = UserRole::where('id', $bindUserRole->role_id)->first();
+        return view('profile.show', [
+            'user' => $user,
+            'role' => $userRole->role,
+        ]);
     }
 }
