@@ -9,9 +9,9 @@
             <a href="/admin/comments" class="list-group-item list-group-item-action list-group-item-primary">Комментарии</a>
         </div>
         <div class="col-9">
+            <h3 class="text-center">Добавление нового пользователя</h3>
             <div class="col-sm-6 my-3 mx-auto">
-                <h2 class="text-center">Добавление нового пользователя</h2>
-                <form action="/addUser" method="post">
+                <form action="/addUser" method="post" class="custom-form">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="fw-semibold">Имя</label>
@@ -33,7 +33,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 col-7 mx-auto">
                         <input type="submit" class="form-control btn btn-primary" value="Добавить пользователя">
                     </div>
                 </form>

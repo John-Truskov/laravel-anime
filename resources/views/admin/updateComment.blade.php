@@ -9,9 +9,9 @@
             <a href="/admin/comments" class="list-group-item list-group-item-action list-group-item-primary active" aria-current="true">Комментарии</a>
         </div>
         <div class="col-9">
-            <div class="col-sm-6 my-3 mx-auto">
-                <h2 class="text-center mb-3">Редактирование комменария</h2>
-                <form action="/editComment" method="post">
+            <div class="col-sm-9 my-3 mx-auto">
+                <h3 class="text-center mb-3">Редактирование комменария</h3>
+                <form action="/editComment" method="post" class="custom-form">
                     @csrf
                     <input name="id" type="hidden" value="{{ $comment->id }}">
                     <div class="mb-3">
@@ -26,7 +26,7 @@
                         <label for="comment" class="fw-semibold">Текст комменария</label>
                         <textarea name="comment" class="form-control" id="comment" required>{{ $comment->comment }}</textarea>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 col-6 mx-auto">
                         <input type="submit" class="form-control btn btn-primary" value="Редактировать комменарий">
                     </div>
                 </form>

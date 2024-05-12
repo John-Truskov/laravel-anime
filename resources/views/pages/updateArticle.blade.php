@@ -1,9 +1,9 @@
 @extends('template')
 @section('title', 'Редактировать статью')
 @section('content')
-    <h2 class="text-center">Редактировать статью</h2>
+    <h3 class="text-center">Редактировать статью</h3>
     <div class="col-sm-6 mx-auto my-3">
-        <form action="/editArticle" method="post" enctype="multipart/form-data">
+        <form action="/editArticle" method="post" enctype="multipart/form-data" class="custom-form">
             @csrf
             <div class="mb-3">
                 <img class="rounded mx-auto d-block" style="max-width: 200px; max-height: 200px;" src="{{$article->img}}">
@@ -57,7 +57,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 col-6 mx-auto">
                 <input type="submit" class="form-control btn btn-primary" value="Сохранить изменения">
             </div>
             <input type="hidden" name="articleId" value="{{$article->id}}">

@@ -9,7 +9,7 @@
             <a href="/admin/comments" class="list-group-item list-group-item-action list-group-item-primary">Комментарии</a>
         </div>
         <div class="col-9">
-            <h2 class="mb-3">Добро пожаловать в админ панель!</h2>
+            <h3 class="mb-3">Добро пожаловать в админ панель!</h3>
             <p><b>Количество пользователей всего:</b> {{ $countUsers }}</p>
             <p><b>Количество аниме на сайте всего:</b> {{ $countArticles }}</p>
             <p><b>Количество оставленных комментариев всего:</b> {{ $countComments }}</p>

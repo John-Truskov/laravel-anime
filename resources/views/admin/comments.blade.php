@@ -9,7 +9,7 @@
             <a href="/admin/comments" class="list-group-item list-group-item-action list-group-item-primary active" aria-current="true">Комментарии</a>
         </div>
         <div class="col-9">
-            <h2 class="mb-3">Управление комментариями</h2>
+            <h3 class="mb-3">Управление комментариями</h3>
             <div class="row fw-bold text-decoration-underline">
                 <div class="col-1">ID</div>
                 <div class="col-4">Текст</div>

@@ -2,7 +2,7 @@
 @section('title', 'Установка нового пароля')
 @section('content')
     <div class="col-sm-6 my-3 mx-auto">
-        <h2 class="text-center">Установка нового пароля</h2>
+        <h3 class="text-center">Установка нового пароля</h3>
         @if($errors->has('password_confirmation'))
             <div class="alert alert-danger">
                 <ul>
@@ -12,7 +12,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('password.store') }}" method="post">
+        <form action="{{ route('password.store') }}" method="post"class="custom-form">
             @csrf
             <div class="mb-3">
                 <input name="email" type="email" class="form-control" placeholder="E-mail" required autofocus value="{{$request->email ?? null}}">

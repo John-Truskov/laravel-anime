@@ -9,7 +9,7 @@
             <a href="/admin/comments" class="list-group-item list-group-item-action list-group-item-primary">Комментарии</a>
         </div>
         <div class="col-9">
-            <h2 class="mb-3">Управление пользователями</h2>
+            <h3 class="mb-3">Управление пользователями</h3>
             <button class="btn btn-success mb-3" onclick="window.location.href = `/addUser`;">Добавить пользователя</button>
             <div class="row fw-bold text-decoration-underline">
                 <div class="col-1">ID</div>

@@ -2,7 +2,7 @@
 @section('title', 'Подтверждение электронной почты')
 @section('content')
     <div class="col-sm-6 my-3 mx-auto">
-        <h2 class="text-center">Подтверждение электронной почты</h2>
+        <h3 class="text-center">Подтверждение электронной почты</h3>
         <div class="mb-3">
             <p>Спасибо за регистрацию! Прежде чем начать, не могли бы вы подтвердить свой адрес электронной почты, нажав на ссылку, которую мы только что отправили вам по электронной почте? Если вы не получили письмо, мы с радостью отправим вам другое.</p>
         </div>
@@ -12,9 +12,9 @@
             </div>
         @endif
         <div class="mb-3">
-            <form action="{{ route('verification.send') }}" method="post">
+            <form action="{{ route('verification.send') }}" method="post" class="custom-form">
                 @csrf
-                <input type="submit" class="form-control btn btn-primary" value="Выслать повторно письмо для подтверждения">
+                    <input type="submit" class="form-control btn btn-primary" value="Выслать повторно письмо для подтверждения">
             </form>
         </div>
     </div>

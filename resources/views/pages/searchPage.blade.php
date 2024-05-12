@@ -1,7 +1,7 @@
 @extends('template')
 @section('title', 'Результаты поиска')
 @section('content')
-    <h2>Результаты поиска по запросу: <span class="fs-3 text-primary-emphasis">&#171;{{$search}}&#187;</span></h2>
+    <h3 class="mb-3">Результаты поиска по запросу: <span class="text-primary-emphasis">&#171;{{$search}}&#187;</span></h3>
     @foreach($articles as $article)
         <div class="row">
             <div class="col-3">

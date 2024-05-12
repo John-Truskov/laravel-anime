@@ -10,8 +10,8 @@
         </div>
         <div class="col-9">
             <div class="col-sm-6 my-3 mx-auto">
-                <h2 class="text-center">Редактирование пользователя</h2>
-                <form action="/editUser" method="post">
+                <h3 class="text-center">Редактирование пользователя</h3>
+                <form action="/editUser" method="post" class="custom-form">
                     @csrf
                     <input name="id" type="hidden" value="{{ $user->id }}">
                     <div class="mb-3">
@@ -34,7 +34,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 col-8 mx-auto">
                         <input type="submit" class="form-control btn btn-primary" value="Редактировать пользователя">
                     </div>
                 </form>
