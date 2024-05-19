@@ -29,7 +29,7 @@
 <main>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand me-lg-5 me-0" href="/">TrueAnime</a>
+            <a class="navbar-brand me-lg-5 me-3" href="/">TrueAnime</a>
             <form action="/search" method="post" class="custom-form search-form flex-fill me-3" role="search">
                 @csrf
                 <div class="input-group input-group-lg">

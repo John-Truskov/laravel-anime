@@ -63,11 +63,12 @@
     <h3>Комментарии</h3>
     <div>
         @foreach($comments as $comment)
-            <p class="mt-3">
-                <span><b>Пользователь:</b> {{$comment->user}}</span>
-                <br>
-                {{$comment->comment}}
-            </p>
+            <div class="px-4 mt-3 team-thumb bg-white shadow-lg">
+                <b>Пользователь:</b> <a href="/user/{{$comment->user_id}}">{{$comment->user}}</a>
+                <p class="mb-0">
+                    {{$comment->comment}}
+                </p>
+            </div>
         @endforeach
     </div>
     @endif
