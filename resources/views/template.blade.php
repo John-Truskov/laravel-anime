@@ -86,13 +86,13 @@
             <div class="col-lg-7 col-md-9 col-12">
                 <ul class="social-icon">
                     <li class="social-icon-item">
-                        <a href="#" class="social-icon-link bi-instagram"></a>
+                        <a href="#" onclick="addFavorite(this); return false;" class="social-icon-link bi-star" title="Добавить в избранное"></a>
                     </li>
                     <li class="social-icon-item">
-                        <a href="#" class="social-icon-link bi-twitter"></a>
+                        <a href="/rss.xml" class="social-icon-link bi-rss-fill" title="RSS"></a>
                     </li>
                     <li class="social-icon-item">
-                        <a href="#" class="social-icon-link bi-whatsapp"></a>
+                        <a href="#" class="social-icon-link bi-whatsapp" title="Whatsapp"></a>
                     </li>
                 </ul>
             </div>
@@ -102,7 +102,7 @@
         </div>
     </div>
 </footer>
-<script src="js/jquery.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 @hasSection('footer_script')
     <script src="/js/@yield('footer_script').js"></script>
 @endif
@@ -110,7 +110,7 @@
     <script src="/js/@yield('video_script').js"></script>
 @endif
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/custom.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>

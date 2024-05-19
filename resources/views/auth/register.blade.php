@@ -23,9 +23,10 @@
                     <input name="email" type="email" class="form-control" placeholder="E-mail" required>
                     <label for="floatingInput">E-mail</label>
                 </div>
-                <div class="form-floating mb-3">
-                    <input name="password" type="password" class="form-control" placeholder="Пароль" required>
+                <div class="form-floating">
+                    <input name="password" id="password" type="password" class="form-control" placeholder="Пароль" required>
                     <label for="floatingInput">Пароль</label>
+                    <a href="#" onclick="genPassword(); return false;" style="display: block; position: relative; top: -24px; text-align: right;">Генерировать пароль</a>
                 </div>
                 <div class="form-floating mb-3">
                     <input name="password_confirmation" type="password" class="form-control" placeholder="Повторите пароль" required>
