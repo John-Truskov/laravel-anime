@@ -22,6 +22,7 @@ Route::get('/anime/{articleId}', [ArticleController::class, 'showArticle']);
 Route::post('/search', [ArticleController::class, 'showSearchArticles']);
 Route::get('/random', [ArticleController::class, 'randomAnime']);
 Route::get('rss.xml', [ArticleController::class, 'showRSS']);
+Route::view('/about', 'pages.about');
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function (){
     Route::get('/addArticle', [ArticleController::class, 'showAddArticle']);

@@ -16,13 +16,13 @@
     <link rel="stylesheet" href="/css/owl.theme.default.min.css">
     <link href="/css/templatemo-pod-talk.css" rel="stylesheet">
     @hasSection('style')
-        <link rel="stylesheet" href="/css/@yield('style').css">
+    <link rel="stylesheet" href="/css/@yield('style').css">
     @endif
     @hasSection('video_style')
-        <link rel="stylesheet" href="/css/@yield('video_style').css">
+    <link rel="stylesheet" href="/css/@yield('video_style').css">
     @endif
     @hasSection('header_script')
-        <script src="/js/@yield('header_script').js"></script>
+    <script src="/js/@yield('header_script').js"></script>
     @endif
 </head>
 <body>
@@ -46,7 +46,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/">Главная</a>
+                        <a class="nav-link" href="/about">О проекте</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/random">Случайное аниме</a>
@@ -104,10 +104,10 @@
 </footer>
 <script src="/js/jquery.min.js"></script>
 @hasSection('footer_script')
-    <script src="/js/@yield('footer_script').js"></script>
+<script src="/js/@yield('footer_script').js"></script>
 @endif
 @hasSection('video_script')
-    <script src="/js/@yield('video_script').js"></script>
+<script src="/js/@yield('video_script').js"></script>
 @endif
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="/js/owl.carousel.min.js"></script>
